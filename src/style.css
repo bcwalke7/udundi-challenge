@@ -40,7 +40,7 @@
 .heroOverlayHeading {
     color: #FFF;
     font-family: Didot, serif;
-    font-size: clamp(5.375rem, 1.703rem + 13.663vw, 14rem);
+    font-size: clamp(3.875rem, 1.211rem + 14.211vw, 14rem);
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -57,6 +57,7 @@
     align-items: center;
     gap: 22px;
     position: relative;
+    width: fit-content;
 }
 
 .heroOverlayBtnSVG {
