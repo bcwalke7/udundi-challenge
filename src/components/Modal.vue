@@ -1,19 +1,23 @@
 <template>
-  <div class="modalOverlay" @click.self="close">
-    <div class="modalContent" :class="{
+  <div class="fixed inset-0 flex items-center z-[100] max-[700px]:px-[20px]" @click.self="close">
+    <div class="modalContent relative bg-white w-[580px] left-[clamp(1.25rem,-0.724rem+10.526vw,8.75rem)] pt-[clamp(1.5rem,0.711rem+4.211vw,4.5rem)] pb-[clamp(1.5rem,0.711rem+4.211vw,4.5rem)] pr-[clamp(1.5rem,0.809rem+3.684vw,4.125rem)] pl-[clamp(1.5rem,0.809rem+3.684vw,4.125rem)]" :class="{
   modalEnter: animateIn && !animateOut,
   modalExit: animateOut
 }">
-      <button class="modalClose" @click="close" :class="{ modalFadeIn: fadeInDetails }">
+      <button class="modalClose absolute cursor-pointer z-[100]
+         opacity-0" @click="close" :class="{ modalFadeIn: fadeInDetails }">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
           <path
               d="M7.47211 6.08565L13.3347 0L14.8426 1.44954L8.93825 7.31805L15 13.1986L13.4303 14.8552L7.65339 8.91838L1.751 15L0.129482 13.4359C2.12151 11.4596 4.05777 9.55167 6.04781 7.58745L0 1.65259L1.55378 0L7.47211 6.08565Z"
               fill="#611818"/>
         </svg>
       </button>
-      <div class="modalContentFlex" :class="{ modalFadeIn: fadeInDetails }">
-        <h2 class="modalHeading">Explore</h2>
-        <p class="modalText">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+      <div class="modalContentFlex flex flex-col gap-[clamp(0.75rem,0.487rem+1.404vw,1.75rem)]
+         opacity-0 " :class="{ modalFadeIn: fadeInDetails }">
+        <h2 class="text-[#611818] font-[Didot,serif] text-[clamp(2.875rem,2.546rem+1.754vw,4.125rem)] font-bold not-italic leading-none m-0">
+          Explore</h2>
+        <p class="text-[#282828] font-[Lato,sans-serif] text-[clamp(0.875rem,0.809rem+0.351vw,1.125rem)] not-italic font-normal leading-[22px] tracking-[0.35px] m-0">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
           laudantium, totam rem
           aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
           Nemo
@@ -27,7 +31,7 @@
             href="https://www.udundi.com/"
             target="_blank"
             rel="noopener"
-            class="modalReadMoreButtonLink"
+            class="no-underline"
         >
           <button class="modalReadMoreButton">
             <span>Read More</span>
@@ -78,25 +82,8 @@ onMounted(() => {
 
 
 <style scoped>
-.modalOverlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  z-index: 100;
-}
-
-@media screen and (max-width: 700px) {
-  .modalOverlay {
-    padding: 0 20px;
-  }
-}
 
 .modalContent {
-  position: relative;
-  left: clamp(1.25rem, -0.724rem + 10.526vw, 8.75rem);
-  background: white;
-  width: 580px;
   padding: clamp(1.5rem, 0.711rem + 4.211vw, 4.5rem) clamp(1.5rem, 0.809rem + 3.684vw, 4.125rem);
   clip-path: polygon(8% 7%, 50% 0, 92% 7%, 100% 40%, 95% 90%, 50% 100%, 5% 90%, 0 40%);
   transform: scale(0.2);
@@ -130,24 +117,13 @@ onMounted(() => {
 }
 
 .modalClose {
-  position: absolute;
   top: clamp(0.375rem, 0.063rem + 1.667vw, 1.563rem);
   right: clamp(0.375rem, 0.063rem + 1.667vw, 1.563rem);
-  background: transparent;
-  font-size: 1.5rem;
-  border: none;
-  cursor: pointer;
-  z-index: 100;
-  opacity: 0;
   transform: translateX(-20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .modalContentFlex {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.75rem, 0.487rem + 1.404vw, 1.75rem);
-  opacity: 0;
   transform: translateX(-20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -156,27 +132,6 @@ onMounted(() => {
   opacity: 1 !important;
   transform: translateX(0) !important;
   transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
-}
-
-.modalHeading {
-  color: #611818;
-  font-family: Didot, serif;
-  font-size: clamp(2.875rem, 2.546rem + 1.754vw, 4.125rem);
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin: 0;
-}
-
-.modalText {
-  color: #282828;
-  font-family: Lato, sans-serif;
-  font-size: clamp(0.875rem, 0.809rem + 0.351vw, 1.125rem);
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0.35px;
-  margin: 0;
 }
 
 .modalReadMoreButtonLink {
